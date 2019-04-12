@@ -1,9 +1,12 @@
 package com.tecnatox.fishchoice.views;
 
+import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -18,8 +21,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tecnatox.fishchoice.R;
+import com.tecnatox.fishchoice.fish.Fish;
+import com.tecnatox.fishchoice.fish.FishLibrary;
+import com.tecnatox.fishchoice.fish.utils.RecyclerViewAdapter;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class FoodSelector extends AppCompatActivity {
 
@@ -54,6 +64,7 @@ public class FoodSelector extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -121,11 +132,26 @@ public class FoodSelector extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main2, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            Context mContext = rootView.getContext();
+
+            FishLibrary f = FishLibrary.getInstance();
+            ArrayList<Fish> fishLibrary = f.getLibrary();
+            initRecyclerView(fishLibrary, mContext, rootView);
+
+
+
             return rootView;
         }
+
+        private void initRecyclerView(ArrayList<Fish> fishLibrary, Context mContext, View rootView) {
+            RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+            RecyclerViewAdapter adapter = new RecyclerViewAdapter(fishLibrary, mContext);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        }
     }
+
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -140,14 +166,15 @@ public class FoodSelector extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
+            // Return a PlaceholderFragment (defined as a static inner class below).+
+
             return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
     }
 }

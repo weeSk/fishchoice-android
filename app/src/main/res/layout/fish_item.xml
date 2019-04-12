@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:id="@+id/parent_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/fish_item_rectangle"
+        android:gravity="center_vertical"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/fish_item_onclick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/input_login"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp">
+
+            <TextView
+                android:id="@+id/fish_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOMBRE"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/dropdown"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fish_item_inner_rectangle"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="center_vertical"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantitiy: "
+                android:layout_marginEnd="10dp"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/input_quantity"
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="49dp"
+                android:layout_height="wrap_content"
+                android:width="40dp"
+                android:background="@drawable/fish_item_grams"
+                android:inputType="number"
+                android:paddingStart="1dp"
+                android:paddingEnd="4dp"
+                android:textAlignment="textEnd" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="g"
+                android:layout_marginEnd="10dp"
+                android:textColor="@android:color/black" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:background="@drawable/rectangle_button"
+                android:text="add"
+                android:textColor="@color/white"
+                android:layout_marginEnd="5dp"/>
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
