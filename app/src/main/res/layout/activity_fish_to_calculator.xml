@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:paddingTop="30dp"
     android:background="@color/background"
-    tools:context=".views.FishToCalculator">
+    tools:context=".views.FishToCalculator"
+    tools:showIn="@layout/app_bar_main"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
         android:id="@+id/instructions"

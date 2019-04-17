@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.tecnatox.fishchoice.login.MainActivity;
 import com.tecnatox.fishchoice.R;
 import com.tecnatox.fishchoice.login.app.AppConfig;
 import com.tecnatox.fishchoice.login.app.AppController;
@@ -23,6 +22,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.tecnatox.fishchoice.views.FishToCalculator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
             Intent intent = new Intent(RegisterActivity.this,
-                    MainActivity.class);
+                    FishToCalculator.class);
             startActivity(intent);
             finish();
         }

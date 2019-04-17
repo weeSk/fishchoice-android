@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 
 import android.widget.TextView;
@@ -20,20 +22,23 @@ import com.tecnatox.fishchoice.fish.Fish;
 import com.tecnatox.fishchoice.fish.FishLibrary;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 import static android.app.Activity.RESULT_OK;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements Filterable {
 
     private static final String TAG = "RecyclerViewAdapter";
 
     private ArrayList<Fish> fishLibrary;
+    private ArrayList<Fish> fishLibraryFull;
     private Context mContext;
     private FishLibrary fl;
 
     public RecyclerViewAdapter(ArrayList<Fish> fishLibrary, Context mContext) {
-        this.fishLibrary = fishLibrary;
+        this.fishLibrary = new ArrayList<>(fishLibrary);
+        this.fishLibraryFull = new ArrayList<>(fishLibrary);
         this.mContext = mContext;
         this.fl = FishLibrary.getInstance();
     }
@@ -48,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final int i = holder.getAdapterPosition();
-        holder.fishName.setText(fishLibrary.get(i).getName());
+        holder.fishName.setText( this.fishLibrary.get(i).getName());
         holder.dropdown.setVisibility(View.GONE);
 
         holder.btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -59,12 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     holder.input_qty.setError("No value set");
                 }else {
                     fl.addFishToUserLibrary(fishLibrary.get(i), Integer.parseInt(holder.input_qty.getText().toString()));
-
                     Intent resultIntent = new Intent();
-//                    Fish f = fishLibrary.get(i);
-//                    resultIntent.putExtra("fishItem", i);
-//                    resultIntent.putExtra("quantity", Integer.parseInt(holder.input_qty.getText().toString()));
-//
                     ((Activity)mContext).setResult(RESULT_OK, resultIntent);
                     ((Activity)mContext).finish();
                 }
@@ -74,7 +74,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, fishLibrary.get(i).getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, fishLibraryFull.get(i).getName(), Toast.LENGTH_SHORT).show();
 
                 if (holder.dropdown.getVisibility() == View.VISIBLE){
                     holder.dropdown.setVisibility(View.GONE);
@@ -89,6 +89,41 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         return fishLibrary.size();
     }
+
+    public Filter getFilter(){
+        return exampleFilter;
+    }
+
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Fish> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0){
+                filteredList.addAll(fishLibraryFull);
+            }else{
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for(Fish item : fishLibraryFull){
+                    if (item.getName().toLowerCase().contains(filterPattern)){
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return  results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            fishLibrary.clear();
+            fishLibrary.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     class ViewHolder extends RecyclerView.ViewHolder{
         EditText input_qty;

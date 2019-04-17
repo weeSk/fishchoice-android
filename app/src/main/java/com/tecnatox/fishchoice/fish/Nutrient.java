@@ -1,20 +1,17 @@
 package com.tecnatox.fishchoice.fish;
 
-import com.tecnatox.fishchoice.fish.utils.Units;
-
 public class Nutrient {
-
+    private int id;
     private String name;
-    private Integer amount;
-    private Units units;
+    private Float mg;     //mg per 100g of this fish
 
-    public Nutrient(String name, Integer amount, Units units) {
+    public Nutrient(Integer id, String name, Float mg) {
+        this.id = id;
         this.name = name;
-        this.amount = amount;
-        this.units = units;
+        this.mg = mg;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Float getMg() {
+        return mg;
     }
 }
