@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.app.FragmentTabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tabHost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".views.ShowResults">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:background="@color/blueAccent"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"></TabWidget>
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="50dp">
+
+            <LinearLayout
+                android:id="@+id/nutrients"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffc916"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="This is tab 1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pollutants"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#da8200"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="This is tab 2" />
+
+            </LinearLayout>
+        </FrameLayout>
+    </RelativeLayout>
+</android.support.v4.app.FragmentTabHost>

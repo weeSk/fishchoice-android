@@ -9,7 +9,7 @@ public class Fish {
     private int quantity;
     private String description;
     private ArrayList<Nutrient> nutrients;
-    private Hashtable<String,Integer> pollutants;
+    private ArrayList<Pollutant> pollutants;
 
     public Fish(String name, String description, ArrayList<Nutrient> n) {
         this.name = name;
@@ -20,31 +20,27 @@ public class Fish {
         fl.add(this);
     }
 
-    public String getName(){
-        return name;
-    }
-
-    public Float getNutrients(int i){
-        return nutrients.get(i).getMg();
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public String getName(){
+        return name;
     }
 
     public Float getMgOfNutrient(int i){
         return nutrients.get(i).getMg() * (quantity/100);
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public int getQuantity() {
+        return quantity;
     }
 }

@@ -27,9 +27,9 @@ public class CalculatorResults extends AppCompatActivity {
         ArrayList<Float> totalNutrients= new ArrayList<>(fl.calcNutris());
         int j=0;
         for(int i=0; i<totalNutrients.size(); i++){
-            pb.setMax(Math.round(fl.getNutrients_req(i)));
+            pb.setMax(Math.round(fl.getNutrientsReq(i)));
             pb.setProgress(Math.round(totalNutrients.get(i)));
-            if (totalNutrients.get(i) >= fl.getNutrients_req(i)){
+            if (totalNutrients.get(i) >= fl.getNutrientsReq(i)){
                 j++;
 
             }

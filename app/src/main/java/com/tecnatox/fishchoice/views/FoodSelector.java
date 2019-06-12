@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.tecnatox.fishchoice.R;
-import com.tecnatox.fishchoice.views.selectionFragments.AllSpices;
+import com.tecnatox.fishchoice.views.selectionFragments.AllSpecies;
 import com.tecnatox.fishchoice.views.selectionFragments.FrequentSpices;
 
 
@@ -44,7 +44,7 @@ public class FoodSelector extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        final AllSpices asFrag = (AllSpices)mSectionsPagerAdapter.getItem(1);
+        final AllSpecies asFrag = (AllSpecies)mSectionsPagerAdapter.getItem(1);
 
 
         sv = findViewById(R.id.searchView);
@@ -57,7 +57,7 @@ public class FoodSelector extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                asFrag.Test(s);
+                asFrag.search(s);
                 return false;
             }
         });
@@ -134,8 +134,8 @@ public class FoodSelector extends AppCompatActivity {
                     FrequentSpices frequentSpicesFragment = new FrequentSpices();
                     return frequentSpicesFragment;
                 case 1:
-                    AllSpices allSpicesFragment1 = new AllSpices();
-                    return allSpicesFragment1;
+                    AllSpecies allSpeciesFragment1 = new AllSpecies();
+                    return allSpeciesFragment1;
             }
             return null;
         }

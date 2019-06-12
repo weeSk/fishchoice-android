@@ -41,8 +41,6 @@ public class RecyclerUserSelection extends RecyclerView.Adapter<RecyclerUserSele
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final int i = holder.getAdapterPosition();
 
-        //TODO textedit constraints
-
         holder.fishName.setText(fl.userLibrary.get(i).getName());
         holder.qty.setText(String.valueOf(fl.userLibrary.get(i).getQuantity()));
 

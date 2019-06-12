@@ -19,8 +19,7 @@ import com.tecnatox.fishchoice.fish.utils.RecyclerViewAdapter;
 import java.util.ArrayList;
 
 
-public class AllSpices extends Fragment {
-    public RecyclerViewAdapter adaptertest;
+public class AllSpecies extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class AllSpices extends Fragment {
         return rootView;
     }
 
-    public void Test(String s){
+    public void search(String s){
         FishLibrary f = FishLibrary.getInstance();
         f.asAdapter.getFilter().filter(s);
     }

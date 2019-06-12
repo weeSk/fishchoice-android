@@ -26,6 +26,7 @@ public class FishLibrary {
 
     //Hashtable with nutrients minimum requirements
     private Hashtable<Integer, Float> nutrients_req;
+    private Hashtable<Integer, String> nutrients_name;
 
     public void add(Fish f){
         library.add(f);
@@ -37,14 +38,6 @@ public class FishLibrary {
 
     public void setNutrientsRequirements(Hashtable<Integer, Float> nr){
         this.nutrients_req = new Hashtable<>(nr);
-    }
-
-    public ArrayList<Fish> getLibrary(){
-        return library;
-    }
-
-    public Float getNutrients_req(int i) {
-        return nutrients_req.get(i);
     }
 
     public void addFishToUserLibrary(Fish f, Integer qty){
@@ -59,11 +52,27 @@ public class FishLibrary {
         }
     }
 
-    //Function to calculate if nutrients reach the minimum for week
+    public void setNutrientsName(Hashtable<Integer, String> nn){
+        this.nutrients_name = new Hashtable<>(nn);
+    }
+
+    public ArrayList<Fish> getLibrary(){
+        return library;
+    }
+
+    public Float getNutrientsReq(int i) {
+        return nutrients_req.get(i);
+    }
+
+    public String getNutrientsName(int i) {
+        return nutrients_name.get(i);
+    }
+
+    //Function to get the summation of the nutrients values of each food.
     public ArrayList<Float> calcNutris(){
         ArrayList<Float> allNutrients = new ArrayList<Float>();
         for(int i = 0; i<userLibrary.size(); i++){
-            for(int j = 0; j<11; j++){
+            for(int j = 0; j<nutrients_name.size(); j++){
                 try{
                     allNutrients.set(j, allNutrients.get(j) + userLibrary.get(i).getMgOfNutrient(j));
                 }catch (IndexOutOfBoundsException e){
@@ -82,6 +91,4 @@ public class FishLibrary {
         return ourInstance;
     }
 
-    private FishLibrary() {
-    }
 }

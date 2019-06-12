@@ -103,7 +103,7 @@ public class FishToCalculator extends AppCompatActivity implements NavigationVie
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FishToCalculator.this, CalculatorResults.class));
+                startActivity(new Intent(FishToCalculator.this, ShowResults.class));
             }
         });
 
@@ -116,19 +116,34 @@ public class FishToCalculator extends AppCompatActivity implements NavigationVie
         Hashtable<Integer, Float> nr = new Hashtable<>();
 
         //mg/d unit
-        nr.put(0,62000.00f*7 );  //0; Protein
-        nr.put(1,250.00f*7);    //1; EPA and DHA acids
-        nr.put(2,0.150f*7);     //2; lodine
-        nr.put(3,0.070f*7);     //3; Selenium
-        nr.put(4,0.00f*7);      //4; Omega-3
-        nr.put(5,0.00f*7);      //5; Cholesterol
-        nr.put(6,0.015f*7);     //6; Vitamin D
-        nr.put(7,8.79f*7);      //7; Vitamin B
-        nr.put(8,0.00f*7);      //8; Omega-6/omega-3
-        nr.put(9,750.00f*7);    //9; Calcium
-        nr.put(10,6.00f*7);     //10; Iron
+        nr.put(0,6200.00f );  //0; Protein
+        nr.put(1,250.00f);    //1; EPA and DHA acids
+        nr.put(2,0.150f);     //2; lodine
+        nr.put(3,0.070f);     //3; Selenium
+        nr.put(4,0.00f);      //4; Omega-3
+        nr.put(5,0.00f);      //5; Cholesterol
+        nr.put(6,0.015f);     //6; Vitamin D
+        nr.put(7,8.79f);      //7; Vitamin B
+        nr.put(8,0.00f);      //8; Omega-6/omega-3
+        nr.put(9,750.00f);    //9; Calcium
+        nr.put(10,6.00f);     //10; Iron
+
+        Hashtable<Integer, String> nutrientsName = new Hashtable<>();
+
+        nutrientsName.put(0,"Protein" );  //0; Protein
+        nutrientsName.put(1,"EPA and DHA acids");    //1; EPA and DHA acids
+        nutrientsName.put(2,"Lodine");     //2; lodine
+        nutrientsName.put(3,"Selenium");     //3; Selenium
+        nutrientsName.put(4,"Omega-3");      //4; Omega-3
+        nutrientsName.put(5,"Cholesterol");      //5; Cholesterol
+        nutrientsName.put(6,"Vitamin D");     //6; Vitamin D
+        nutrientsName.put(7,"Vitamin B");      //7; Vitamin B
+        nutrientsName.put(8,"Omega-6");      //8; Omega-6/omega-3
+        nutrientsName.put(9,"Calcium");    //9; Calcium
+        nutrientsName.put(10,"Iron");     //10; Iron
 
         fl.setNutrientsRequirements(nr);
+        fl.setNutrientsName(nutrientsName);
     }
 
     private void importFish() {
@@ -155,7 +170,7 @@ public class FishToCalculator extends AppCompatActivity implements NavigationVie
         new Fish("Alaska Pollock", "Alaska Pollock description", n);
         new Fish("Canned Sardine", "Canned Sardine description", n);
 
-        User test = new User(80);
+        User test = new User(70, 30);
     }
 
     private void initRecyclerView() {

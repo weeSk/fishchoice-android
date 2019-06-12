@@ -94,18 +94,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return exampleFilter;
     }
 
-    private Filter exampleFilter = new Filter() {
+    private final Filter exampleFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Fish> filteredList = new ArrayList<>();
 
-            if (constraint == null || constraint.length() == 0){
+            if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(fishLibraryFull);
-            }else{
+            } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for(Fish item : fishLibraryFull){
-                    if (item.getName().toLowerCase().contains(filterPattern)){
+                for (Fish item : fishLibraryFull) {
+                    if (item.getName().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
                 }
@@ -114,13 +114,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             FilterResults results = new FilterResults();
             results.values = filteredList;
 
-            return  results;
+            return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             fishLibrary.clear();
-            fishLibrary.addAll((List)results.values);
+            fishLibrary.addAll((List) results.values);
             notifyDataSetChanged();
         }
     };
